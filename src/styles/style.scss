@@ -1,0 +1,853 @@
+@import "./montserrat.scss";
+
+$font-normal: 400;
+$font-bold: 700;
+
+$bgColorForm: #415460;
+$colorForm: rgba(255, 255, 255, 0.6);
+
+%section-title {
+  font-size: 2.375rem;
+  font-weight: $font-bold;
+  letter-spacing: 0.125rem;
+  line-height: 1.55em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+%section-text {
+  font-weight: $font-normal;
+  font-family: "Merriweather";
+  letter-spacing: 0.1225rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+%button {
+  font-size: 1.125rem;
+  font-weight: $font-normal;
+  line-height: 1.75em;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+  border: 0.125rem solid #000000;
+  text-align: center;
+}
+
+%button-hover {
+  font-weight: $font-bold;
+  border: none;
+  background-color: #71f6eb;
+  cursor: pointer;
+}
+
+%link-hover {
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+%position-fixed {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin box-sizing($type) {
+  -webkit-box-sizing: $type;
+  -moz-box-sizing: $type;
+  box-sizing: $type;
+}
+
+@mixin filter($shadow) {
+  filter: $shadow;
+  -webkit-filter: $shadow;
+}
+
+@mixin transform($translate) {
+  -webkit-transform: $translate;
+  -ms-transform: $translate;
+  transform: $translate;
+}
+
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+
+@mixin animation($name, $time) {
+  -webkit-animation-name: $name;
+  animation-name: $name;
+  -webkit-animation-duration: $time;
+  animation-duration: $time;
+}
+
+@mixin keyframe-zoom {
+  @-webkit-keyframes zoom {
+    from {
+      @include transform(scale(0));
+    }
+    to {
+      @include transform(scale(1));
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      @include transform(scale(0));
+    }
+    to {
+      @include transform(scale(1));
+    }
+  }
+}
+
+@mixin flexBox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin justify-content($value: flex-start) {
+  @if $value == flex-start {
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    -ms-flex-pack: start;
+  } @else if $value == flex-end {
+    -webkit-box-pack: end;
+    -moz-box-pack: end;
+    -ms-flex-pack: end;
+  } @else if $value == space-between {
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+  } @else if $value == space-around {
+    -ms-flex-pack: distribute;
+  } @else {
+    -webkit-box-pack: $value;
+    -moz-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+  -webkit-justify-content: $value;
+  justify-content: $value;
+}
+
+@mixin flex-wrap($value: nowrap) {
+  -webkit-flex-wrap: $value;
+  @if $value == nowrap {
+    -ms-flex-wrap: none;
+  } @else {
+    -ms-flex-wrap: $value;
+  }
+  flex-wrap: $value;
+}
+
+@mixin flex-direction($direction: row) {
+  @if $direction == row-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction: reverse;
+    -moz-box-orient: horizontal;
+  } @else if $direction == column {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+  } @else if $direction == column-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+    -moz-box-direction: reverse;
+    -moz-box-orient: vertical;
+  } @else {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -moz-box-orient: horizontal;
+  }
+  -webkit-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+    -moz-box-align: end;
+    -ms-flex-align: end;
+  } @else {
+    -webkit-box-align: $value;
+    -moz-box-align: $value;
+    -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+  align-items: $value;
+}
+
+@mixin subtitle($font-size) {
+  font-size: $font-size;
+  font-weight: $font-bold;
+  font-family: "Merriweather";
+  letter-spacing: 0.0625rem;
+  line-height: 1.75rem;
+  text-transform: uppercase;
+}
+
+@mixin adaptive-img($display) {
+  display: $display;
+  max-width: 100%;
+  height: auto;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &::-ms-input-placeholder {
+    @content;
+  }
+
+  &::placeholder {
+    @content;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  @include box-sizing(border-box);
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+}
+
+.header {
+  background-color: rgba(239, 240, 242, 0.99);
+  padding: 4.0625rem 9.3125rem 12.25rem 9.3125rem;
+  position: relative;
+
+  &__logo {
+    margin-left: 2.5rem;
+  }
+
+  &__rubric {
+    margin: 12rem 0rem 8.5rem;
+  }
+
+  &__title,
+  &__word {
+    font-size: 2.8125rem;
+    font-weight: $font-bold;
+    line-height: 1.25em;
+    letter-spacing: 0.0875rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #505050;
+    @include filter(
+      drop-shadow(0.2198rem 0.5178rem 0.3125rem rgba(0, 0, 0, 0.24))
+    );
+  }
+
+  &__word--background {
+    background-color: #b2f2ee;
+    padding: 0rem 0.4rem;
+  }
+
+  &__button {
+    position: relative;
+    left: 50%;
+    @include transform(translate(-50%, 0));
+    @extend %button;
+    border-radius: 0.125rem;
+    padding: 0.625rem 2.9rem;
+
+    &:hover {
+      @extend %button-hover;
+      @include transition(all 2s ease);
+    }
+  }
+
+  &__glass {
+    position: absolute;
+    top: 72%;
+    right: 16%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .header {
+    padding: 2.0625rem 5.375rem 8.25rem 5.375rem;
+
+    &__glass {
+      top: 11%;
+      right: 5%;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .header__title,
+  .header__word {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 1.0625rem 2.375rem 6.25rem 2.375rem;
+
+    &__title,
+    &__word {
+      line-height: 1.75em;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  body {
+    overflow: hidden;
+  }
+  .header {
+    padding: 1.0625rem 1.375rem 3.25rem 1.375rem;
+
+    &__title,
+    &__word {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.about-us {
+  background-color: #f8fafa;
+  padding: 7.125rem 0rem 8.5rem 0rem;
+
+  &__rubric {
+    margin-bottom: 8.6875rem;
+  }
+
+  &__title {
+    @extend %section-title;
+    margin-left: 2rem;
+  }
+
+  &__text {
+    font-size: 1.125rem;
+    line-height: 1.25em;
+    @extend %section-text;
+  }
+
+  &__content {
+    @include flexBox;
+    @include justify-content(space-evenly);
+  }
+
+  &__img {
+    @include adaptive-img(block);
+    margin-left: 2rem;
+    margin-top: -2rem;
+  }
+
+  &__info {
+    margin-left: -5rem;
+  }
+
+  &__subtitle {
+    @include subtitle(1.25rem);
+  }
+
+  &__description {
+    max-width: 30.75rem;
+    font-size: 1.1rem;
+    font-weight: $font-normal;
+    font-family: "Raleway";
+    letter-spacing: 0.0625em;
+    line-height: 1.75rem;
+  }
+
+  &__description:first-of-type {
+    margin-bottom: 2rem;
+  }
+
+  &__subheading {
+    @include subtitle(1.1rem);
+  }
+}
+
+@media (max-width: 1300px) {
+  .about-us {
+    padding: 7.125rem 2rem 9rem 2rem;
+
+    &__content {
+      display: inline;
+    }
+
+    &__rubric,
+    &__img,
+    &__info,
+    &__description {
+      margin: 0 auto;
+    }
+
+    &__info {
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .about-us__title {
+    font-size: 1.5rem;
+    margin: 0 auto;
+  }
+
+  .about-us__text {
+    font-size: 0.8rem;
+  }
+}
+
+.works {
+  padding: 7.0625rem 9.0625rem 7.0625rem 9.0625rem;
+
+  &__rubric {
+    margin-bottom: 7.5rem;
+  }
+
+  &__title {
+    @extend %section-title;
+    margin-left: 3rem;
+  }
+
+  &__text {
+    font-size: 1.0625rem;
+    line-height: 1.25em;
+    @extend %section-text;
+  }
+
+  &__block {
+    @include flexBox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+  }
+
+  &__box {
+    margin: 0rem 0.4rem 0.7rem 0.3rem;
+    cursor: pointer;
+
+    &:hover {
+      @include transform(rotate(360deg));
+      @include transition(all 3s ease);
+    }
+  }
+
+  &__img {
+    @include adaptive-img(block);
+  }
+
+  &__img--center {
+    margin: 0 auto;
+  }
+
+  &__pop-up {
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+    z-index: 9999;
+    padding-top: 6.25rem;
+    @extend %position-fixed;
+    @include adaptive-img(none);
+    @include animation(zoom, 0.9s);
+    @include keyframe-zoom;
+  }
+
+  &__button {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.925);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-bottom: 3rem;
+    margin: 0 auto;
+    cursor: pointer;
+
+    &:hover {
+      color: red;
+      @include transition(all 3s ease);
+      @include transform(rotate(180deg));
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .works {
+    padding: 7.125rem 2rem 9rem 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .works__title {
+    font-size: 1.5rem;
+    margin: 0 auto;
+  }
+
+  .works__text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .works__img--center {
+    max-width: 80%;
+  }
+}
+
+.team {
+  padding: 2.25rem 9.0625rem 10.625rem 9.0625rem;
+  background-color: #f9fafb;
+
+  &__rubric {
+    padding: 3.175rem 0rem 7.5rem;
+  }
+
+  &__title {
+    @extend %section-title;
+  }
+
+  &__text {
+    font-size: 1.0625rem;
+    line-height: 0.8em;
+    @extend %section-text;
+  }
+
+  &__block {
+    @include flexBox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+  }
+
+  &__box {
+    position: relative;
+    margin: 0rem 0.4rem 1rem 0.3rem;
+    cursor: pointer;
+
+    &:hover .team__resume {
+      display: block;
+    }
+  }
+
+  &__img {
+    @include adaptive-img(block);
+  }
+
+  &__resume {
+    position: absolute;
+    top: 35%;
+    background-image: url("../assets/img/team__info--hover.png");
+    background-size: cover;
+    padding: 3.6rem 3.375rem 2.625rem 3.3rem;
+    cursor: pointer;
+    @include adaptive-img(none);
+  }
+
+  &__name {
+    font-size: 1.25rem;
+    font-weight: $font-bold;
+    font-family: "Merriweather";
+    letter-spacing: 0.0625rem;
+    line-height: 1.5rem;
+    color: #272727;
+    margin-bottom: 1rem;
+  }
+
+  &__job {
+    font-size: 1rem;
+    font-style: italic;
+    color: #737574;
+  }
+
+  &__description {
+    font-size: 1.25rem;
+    font-weight: $font-normal;
+    font-family: "Raleway";
+    line-height: 1.5rem;
+    color: #000000;
+  }
+
+  &__app {
+    @include flexBox;
+    @include transition(all 1s ease);
+    font-weight: $font-bold;
+    background-color: #71f6eb;
+    border: none;
+    margin-top: 2em;
+    cursor: pointer;
+  }
+
+  &__network {
+    margin-right: 0.8rem;
+  }
+
+  &__link {
+    color: #000000;
+    &:hover {
+      color: #ffffffd5;
+      @extend %link-hover;
+      @include transition(all 1s ease);
+    }
+  }
+
+  &__icon {
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .team {
+    padding: 2.25rem 3.0625rem 5.625rem 3.0625rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .team__title {
+    font-size: 1.5rem;
+    margin: 0 auto;
+  }
+
+  .team__text {
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .team__resume {
+    padding: 1.5rem;
+  }
+
+  .team__name {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .team__description {
+    font-size: 1rem;
+  }
+
+  .team__app {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .team__name {
+    font-size: 0.7rem;
+  }
+  .team__job,
+  .team__description {
+    font-size: 0.5rem;
+  }
+}
+
+.footer {
+  padding: 7.5625rem 9.0625rem 9.4375rem 9.0625rem;
+  background-image: url("../assets/img/footer_bg.png");
+  background-position: 50% 38.5%;
+
+  &__contact {
+    @include flexBox;
+    @include justify-content(space-evenly);
+    margin-bottom: 13rem;
+  }
+
+  &__form {
+    max-width: 38.375rem;
+    height: auto;
+    padding: 1.5rem 2rem 1.3rem 2rem;
+    margin-left: 1rem;
+
+    &--background {
+      background-color: $bgColorForm;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 0.9375rem;
+    font-weight: $font-normal;
+    font-family: "Raleway";
+    line-height: 3.1875rem;
+    border: none;
+    border-bottom: #6d7981 solid 0.0625rem;
+    color: $bgColorForm;
+    background-color: transparent;
+    margin: 0rem 0rem 0.6rem 0.2rem;
+
+    @include placeholder {
+      color: $colorForm;
+    }
+
+    &:last-of-type {
+      padding-bottom: 4.5rem;
+    }
+  }
+
+  &__button {
+    @extend %button;
+    padding: 0.625rem 2.25rem;
+    margin-top: 1.7rem;
+
+    &:hover {
+      @extend %button-hover;
+      @include transition(all 1s ease);
+    }
+  }
+
+  &__map {
+    width: 31.25rem;
+    height: auto;
+    padding: 2rem 1.4375rem 1.3rem;
+    margin-right: 1rem;
+
+    &--background {
+      background-color: $bgColorForm;
+    }
+  }
+
+  &__address {
+    font-size: 0.9375rem;
+    font-weight: $font-normal;
+    font-family: "Raleway";
+    letter-spacing: 0.05rem;
+    line-height: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding-left: 0.4rem;
+
+    &:nth-of-type(4) {
+      padding-bottom: 1.25rem;
+    }
+
+    &:last-of-type {
+      padding-bottom: 1.25rem;
+    }
+  }
+
+  &__yandex {
+    width: 100%;
+    height: 14rem;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Raleway";
+    line-height: 1.5625rem;
+    color: rgba(255, 255, 255, 08);
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 0.8rem;
+  }
+
+  &__app {
+    @include flexBox;
+    @include justify-content(center);
+  }
+
+  &__network {
+    width: 2.8125rem;
+    height: 2.5rem;
+    background-color: #8a8a8a;
+    margin-right: 0.4375rem;
+
+    &:hover {
+      @extend %button-hover;
+      @include transition(all 1s ease);
+    }
+  }
+
+  &__link {
+    font-size: 1.4375rem;
+    font-family: "Font Awesome";
+    line-height: 3.0625rem;
+    color: #faf4f4;
+    position: relative;
+    left: 30%;
+    @include transform(translate(-50%, 0));
+
+    &:hover {
+      color: #000000;
+      @extend %link-hover;
+      @include transition(all 1s ease);
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .footer {
+    background-position: 10% 15%;
+    padding: 3rem;
+
+    &__contact {
+      @include flex-direction(column);
+      @include align-items(center);
+      margin-bottom: 0rem;
+      margin-top: 0rem;
+    }
+
+    &__form {
+      width: 100%;
+      margin-bottom: 2rem;
+      margin-left: 0rem;
+    }
+
+    &__map {
+      max-width: 100%;
+      margin: 0 auto;
+      margin-bottom: 2rem;
+    }
+
+    &__input {
+      max-width: 100%;
+      width: 80%;
+    }
+
+    &__button {
+      margin: 0 auto;
+    }
+
+    &__yandex {
+      max-width: 100%;
+      height: 5rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .footer__button {
+    font-size: 0.7rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .footer {
+    background-position: 10% 10%;
+  }
+}
