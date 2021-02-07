@@ -208,23 +208,23 @@ $colorForm: rgba(255, 255, 255, 0.6);
 
 @mixin placeholder {
   &::-webkit-input-placeholder {
-    @content;
+    color: $colorForm;
   }
 
   &::-moz-placeholder {
-    @content;
+    color: $colorForm;
   }
 
   &:-ms-input-placeholder {
-    @content;
+    color: $colorForm;
   }
 
   &::-ms-input-placeholder {
-    @content;
+    color: $colorForm;
   }
 
   &::placeholder {
-    @content;
+    color: $colorForm;
   }
 }
 
@@ -696,13 +696,10 @@ body {
     line-height: 3.1875rem;
     border: none;
     border-bottom: #6d7981 solid 0.0625rem;
-    color: $bgColorForm;
+    color: #000000;
     background-color: transparent;
     margin: 0rem 0rem 0.6rem 0.2rem;
-
-    @include placeholder {
-      color: $colorForm;
-    }
+    @include placeholder;
 
     &:last-of-type {
       padding-bottom: 4.5rem;
@@ -799,7 +796,7 @@ body {
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1500px) {
   .footer {
     background-position: 10% 15%;
     padding: 3rem;
