@@ -1,4 +1,6 @@
 @import "./montserrat.scss";
+@import "./merriweather.scss";
+@import './raleway.scss';
 
 $font-normal: 400;
 $font-bold: 700;
@@ -17,8 +19,8 @@ $colorForm: rgba(255, 255, 255, 0.6);
 
 %section-text {
   font-weight: $font-normal;
-  font-family: "Merriweather";
-  letter-spacing: 0.1225rem;
+  font-family: Merriweather, serif;
+  letter-spacing: 0.0625em;
   text-align: center;
   text-transform: uppercase;
 }
@@ -194,7 +196,7 @@ $colorForm: rgba(255, 255, 255, 0.6);
 @mixin subtitle($font-size) {
   font-size: $font-size;
   font-weight: $font-bold;
-  font-family: "Merriweather";
+  font-family: Merriweather, serif;
   letter-spacing: 0.0625rem;
   line-height: 1.75rem;
   text-transform: uppercase;
@@ -374,9 +376,9 @@ body {
 
   &__description {
     max-width: 30.75rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: $font-normal;
-    font-family: "Raleway";
+    font-family: Raleway, sans-serif;
     letter-spacing: 0.0625em;
     line-height: 1.75rem;
   }
@@ -570,7 +572,7 @@ body {
   &__name {
     font-size: 1.25rem;
     font-weight: $font-bold;
-    font-family: "Merriweather";
+    font-family: Merriweather, serif;
     letter-spacing: 0.0625rem;
     line-height: 1.5rem;
     color: #272727;
@@ -584,9 +586,9 @@ body {
   }
 
   &__description {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: $font-normal;
-    font-family: "Raleway";
+    font-family: Raleway, sans-serif;
     line-height: 1.5rem;
     color: #000000;
   }
@@ -692,7 +694,7 @@ body {
     width: 100%;
     font-size: 0.9375rem;
     font-weight: $font-normal;
-    font-family: "Raleway";
+    font-family: Raleway, sans-serif;
     line-height: 3.1875rem;
     border: none;
     border-bottom: #6d7981 solid 0.0625rem;
@@ -731,8 +733,7 @@ body {
   &__address {
     font-size: 0.9375rem;
     font-weight: $font-normal;
-    font-family: "Raleway";
-    letter-spacing: 0.05rem;
+    font-family: Raleway, sans-serif;
     line-height: 1.5rem;
     color: rgba(255, 255, 255, 0.7);
     padding-left: 0.4rem;
@@ -754,7 +755,7 @@ body {
   &__title {
     font-size: 1rem;
     font-weight: 400;
-    font-family: "Raleway";
+    font-family: Raleway, sans-serif;
     line-height: 1.5625rem;
     color: rgba(255, 255, 255, 08);
     text-transform: uppercase;
@@ -781,7 +782,6 @@ body {
 
   &__link {
     font-size: 1.4375rem;
-    font-family: "Font Awesome";
     line-height: 3.0625rem;
     color: #faf4f4;
     position: relative;
