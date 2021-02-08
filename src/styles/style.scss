@@ -1,6 +1,6 @@
 @import "./montserrat.scss";
 @import "./merriweather.scss";
-@import './raleway.scss';
+@import "./raleway.scss";
 
 $font-normal: 400;
 $font-bold: 700;
@@ -666,14 +666,15 @@ body {
 }
 
 .footer {
-  padding: 7.5625rem 9.0625rem 9.4375rem 9.0625rem;
-  background-image: url("../assets/img/footer_bg.png");
-  background-position: 50% 38.5%;
+  background-image: url("../assets/img/footer__contact.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 
   &__contact {
     @include flexBox;
     @include justify-content(space-evenly);
-    margin-bottom: 13rem;
+    padding: 7.5625rem 9.0625rem;
   }
 
   &__form {
@@ -749,6 +750,12 @@ body {
     height: 14rem;
   }
 
+  &__social {
+    background-image: url("../assets/img/footer__social.png");
+    background-size: cover;
+    padding: 5.5625rem 9.0625rem 9.0625rem 9.0625rem;
+  }
+
   &__title {
     font-size: 1rem;
     font-weight: 400;
@@ -795,14 +802,10 @@ body {
 
 @media (max-width: 1450px) {
   .footer {
-    background-position: 10% 15%;
-    padding: 3rem;
-
     &__contact {
       @include flex-direction(column);
       @include align-items(center);
-      margin-bottom: 0rem;
-      margin-top: 0rem;
+      padding: 3rem;
     }
 
     &__form {
@@ -814,7 +817,6 @@ body {
     &__map {
       max-width: 100%;
       margin: 0 auto;
-      margin-bottom: 2rem;
     }
 
     &__input {
@@ -828,7 +830,7 @@ body {
 
     &__yandex {
       max-width: 100%;
-      height: 5rem;
+      height: 15rem;
     }
   }
 }
@@ -838,10 +840,15 @@ body {
     font-size: 0.7rem;
     padding: 1rem;
   }
+
+  .footer__social {
+    padding: 3rem;
+  }
 }
 
-@media (max-width: 340px) {
-  .footer {
-    background-position: 10% 10%;
+@media (max-width: 380px) {
+  .footer__contact,
+  .footer__social {
+    padding: 1rem;
   }
 }
