@@ -36,8 +36,7 @@ $colorForm: rgba(255, 255, 255, 0.6);
 }
 
 %button-hover {
-  font-weight: $font-bold;
-  border: none;
+  border: 0.125rem solid transparent;
   background-color: #71f6eb;
   cursor: pointer;
 }
@@ -279,6 +278,7 @@ body {
     @extend %button;
     border-radius: 0.125rem;
     padding: 0.625rem 2.9rem;
+    
 
     &:hover {
       @extend %button-hover;
@@ -369,6 +369,7 @@ body {
 
   &__subtitle {
     @include subtitle(1.25rem);
+    margin-bottom: 0.005rem;
   }
 
   &__description {
@@ -386,6 +387,8 @@ body {
 
   &__subheading {
     @include subtitle(1.1rem);
+    margin-top: 0.4rem;
+    margin-bottom: -0.5rem;
   }
 }
 
@@ -447,11 +450,14 @@ body {
 
   &__box {
     margin: 0rem 0.4rem 0.7rem 0.3rem;
+    box-shadow: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     cursor: pointer;
+    @include transition(box-shadow 1s);
 
     &:hover {
-      @include transform(rotate(360deg));
-      @include transition(all 3s ease);
+      @include transition(all 0.4s ease);
+      box-shadow: 0 0 3px #515151;
     }
   }
 
@@ -545,6 +551,7 @@ body {
   &__box {
     position: relative;
     margin: 0rem 0.4rem 1rem 0.3rem;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     cursor: pointer;
 
     &:hover .team__resume {
@@ -696,9 +703,11 @@ body {
     line-height: 3.1875rem;
     border: none;
     border-bottom: #6d7981 solid 0.0625rem;
-    color: #000000;
+    color: white;
     background-color: transparent;
     margin: 0rem 0rem 0.6rem 0.2rem;
+    padding-left: 1rem;
+    outline: none;
     @include placeholder;
 
     &:last-of-type {
@@ -713,7 +722,7 @@ body {
 
     &:hover {
       @extend %button-hover;
-      @include transition(all 1s ease);
+      @include transition(all 3s ease-in-out);
     }
   }
 
@@ -777,6 +786,8 @@ body {
     height: 2.5rem;
     background-color: #8a8a8a;
     margin-right: 0.4375rem;
+    @include flexBox;
+    @include align-items(center);
 
     &:hover {
       @extend %button-hover;
@@ -789,11 +800,10 @@ body {
     line-height: 3.0625rem;
     color: #faf4f4;
     position: relative;
-    left: 30%;
+    left: 50%;
     @include transform(translate(-50%, 0));
 
     &:hover {
-      color: #000000;
       @extend %link-hover;
       @include transition(all 1s ease);
     }
