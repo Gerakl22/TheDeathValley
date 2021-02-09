@@ -278,7 +278,6 @@ body {
     @extend %button;
     border-radius: 0.125rem;
     padding: 0.625rem 2.9rem;
-    
 
     &:hover {
       @extend %button-hover;
@@ -556,6 +555,7 @@ body {
 
     &:hover .team__resume {
       display: block;
+      @include animation(zoom, 3s);
     }
   }
 
