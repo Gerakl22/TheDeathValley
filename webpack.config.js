@@ -73,7 +73,7 @@ module.exports = {
     publicPath: "",
   },
   resolve: {
-    extensions: [".js", ".json", "png", ".css", ".scss", ".sass", ".less"],
+    extensions: ['.tsx', '.ts', ".js", ".json", "png", ".css", ".scss", ".sass", ".less"],
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
@@ -140,6 +140,14 @@ module.exports = {
       },
       {
         test: /\.js$/i,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: babelOptions(),
+        },
+      },
+      {
+        test: /\.ts$/i,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
